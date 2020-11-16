@@ -22,19 +22,15 @@ class SynergyWholesaleSSLModuleTest extends TestCase
     {
         return [
             ['CreateAccount'],
-            ['SuspendAccount'],
-            ['UnsuspendAccount'],
-            ['TerminateAccount'],
-            ['ChangePackage'],
-            ['ChangePassword'],
+            ['SSLStepOne'],
+            ['SSLStepTwo'],
+            ['Renew'],
             ['AdminCustomButtonArray'],
-            ['ConfigOptions'],
-            ['MetaData'],
-            // Extra methods
-            ['ClientArea'],
-            ['LoginLink'],
             ['ClientAreaCustomButtonArray'],
-            ['UsageUpdate']
+            ['ConfigOptions'],
+            ['ClientArea'],
+            ['ProductsLoader'],
+            ['DecodeCSR'],
         ];
     }
 
@@ -50,6 +46,6 @@ class SynergyWholesaleSSLModuleTest extends TestCase
      */
     public function testCoreModuleFunctionsExist($method)
     {
-        $this->assertTrue(function_exists('synergywholesale_hosting' . '_' . $method));
+        $this->assertTrue(function_exists('synergywholesale_ssl_' . $method));
     }
 }
