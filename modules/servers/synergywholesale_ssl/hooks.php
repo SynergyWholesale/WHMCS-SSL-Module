@@ -15,7 +15,7 @@ add_hook('ClientAreaPrimarySidebar', 1, function (WHMCS\View\Menu\Item $primaryS
             $destination = parse_url($panel->getUri());
             $current = parse_url($_SERVER['REQUEST_URI']);
             if (isset($destination['fragment']) && $destination['query'] != $current['query']) {
-                $panel->setUri('/' . $destination['path'] . '?' . $destination['query']);
+                $panel->setUri($destination['path'] . '?' . $destination['query']);
                 $panel->setAttributes([]);
             }
         }

@@ -600,7 +600,7 @@ function synergywholesale_ssl_ClientArea(array $params)
 {
     global $_LANG;
 
-    if (empty(get_registered_hooks('ClientAreaPrimarySidebar'))) {
+    if (function_exists('get_registered_hooks') && empty(get_registered_hooks('ClientAreaPrimarySidebar'))) {
         include __DIR__ . DIRECTORY_SEPARATOR . 'hooks.php';
     }
 
