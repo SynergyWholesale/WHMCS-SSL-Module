@@ -959,7 +959,8 @@ function synergywholesale_ssl_SSLStepTwo(array $params)
 
     return [
         'remoteid' => $response->certID,
-        'domain' => $params['fields']['common_name']
+        'domain' => $params['fields']['common_name'],
+        'approveremails' => [],
     ];
 }
 
@@ -998,7 +999,7 @@ function synergywholesale_ssl_Renew(array $params)
     DB::table('tblsslorders')
         ->where('serviceid', $params['serviceid'])
         ->update([
-            'remoteid' => $output->certID
+            'remoteid' => $response->certID
         ]);
 
     return 'success';
