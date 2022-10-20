@@ -161,7 +161,7 @@ function synergywholesale_ssl_ConfigOptions(array $params)
         ],
         'Purchase Period' => [
             'Type' => 'dropdown',
-            'Options' => implode(',', range(1, 2)),
+            'Options' => '1',
             'Description' => 'Years',
             'SimpleMode' => true
         ],
