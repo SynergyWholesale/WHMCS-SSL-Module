@@ -13,10 +13,6 @@ define('SW_SSL_PRODUCTS_ENDPOINT', 'https://manage.synergywholesale.com/ssl-prod
 define('SW_SSL_API_PROD_ENDPOINT', 'https://api.synergywholesale.com/?wsdl');
 define('SW_SSL_API_TEST_ENDPOINT', 'https://api-ote.synergywholesale.com/?wsdl');
 
-// phpcs:disable
-set_exception_handler(function ($exception) {
-    echo '<b>Error:</b> ', $exception->getMessage();
-});
 /**
  * Module Metadata - Displays the module's nice name.
  *
@@ -107,7 +103,7 @@ function synergywholesale_ssl_ConfigOptions(array $params)
     $relid = isset($_POST['id']) ? $_POST['id'] : $_GET['id'];
     $fieldExists =  DB::table('tblcustomfields')
         ->where('relid', $relid)
-        ->count();
+        ->exists();
 
     if (!$fieldExists) {
         DB::table('tblcustomfields')
@@ -120,11 +116,11 @@ function synergywholesale_ssl_ConfigOptions(array $params)
             ]);
     }
 
-    $result = DB::table('tblemailtemplates')
+    $templateExists = DB::table('tblemailtemplates')
         ->where('name', 'SSL Certificate Configuration Required')
-        ->first();
+        ->exists();
 
-    if (!count($result)) {
+    if (!$templateExists) {
         $emailTemplate = file_get_contents(join(DIRECTORY_SEPARATOR, [
             __DIR__,
             'templates',
@@ -160,13 +156,12 @@ function synergywholesale_ssl_ConfigOptions(array $params)
         ],
         'SSL Certificate Type' => [
             'Type' => 'text',
-            'Options' => implode(',', array_unique($certificateTypes)),
             'Loader' => 'synergywholesale_ssl_ProductsLoader',
             'SimpleMode' => true
         ],
         'Purchase Period' => [
             'Type' => 'dropdown',
-            'Options' => implode(',', range(1, 2)),
+            'Options' => '1',
             'Description' => 'Years',
             'SimpleMode' => true
         ],
@@ -964,7 +959,8 @@ function synergywholesale_ssl_SSLStepTwo(array $params)
 
     return [
         'remoteid' => $response->certID,
-        'domain' => $params['fields']['common_name']
+        'domain' => $params['fields']['common_name'],
+        'approveremails' => [],
     ];
 }
 
@@ -1003,7 +999,7 @@ function synergywholesale_ssl_Renew(array $params)
     DB::table('tblsslorders')
         ->where('serviceid', $params['serviceid'])
         ->update([
-            'remoteid' => $output->certID
+            'remoteid' => $response->certID
         ]);
 
     return 'success';
