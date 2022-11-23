@@ -2,18 +2,22 @@
 
 Synergy Wholesale WHMCS SSL Module
 
-## Unreleased Version [Updated xx/xx/2020]
-### Added
--
-
-### Changed
--
+## 3.0.6 [Updated 24/11/2022]
 
 ### Fixed
--
+- Compatibility issues with WHMCS 8.6
+- Returning a list of approver emails in configuration step
+- Properly setting certificate's remote ID when renewing certificate 
 
 ### Removed
-- 
+- The error handler override has been removed, restoring WHMCS' native error handling when using this module.
+
+
+## Unreleased Version [Updated 03/12/2020]
+
+### Fixed
+- Compatibility issues with WHMCS 8
+
 
 ## 3.0.4 [Updated 23/08/2019]
 ### Added
