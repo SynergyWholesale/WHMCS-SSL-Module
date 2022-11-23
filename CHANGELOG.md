@@ -13,7 +13,7 @@ Synergy Wholesale WHMCS SSL Module
 - The error handler override has been removed, restoring WHMCS' native error handling when using this module.
 
 
-## Unreleased Version [Updated 03/12/2020]
+## 3.0.5 [Updated 03/12/2020]
 
 ### Fixed
 - Compatibility issues with WHMCS 8
