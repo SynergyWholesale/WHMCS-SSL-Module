@@ -12,6 +12,9 @@ use WHMCS\Database\Capsule as DB;
 define('SW_SSL_PRODUCTS_ENDPOINT', 'https://manage.synergywholesale.com/ssl-products');
 define('SW_SSL_API_PROD_ENDPOINT', 'https://api.synergywholesale.com/?wsdl');
 define('SW_SSL_API_TEST_ENDPOINT', 'https://api-ote.synergywholesale.com/?wsdl');
+define('SW_SSL_MODULE_VERSION', '{{VERSION}}');
+define('SW_SSL_MODULE_NAME', 'synergywholesale_ssl');
+
 
 /**
  * Module Metadata - Displays the module's nice name.
@@ -71,7 +74,7 @@ function synergywholesale_ssl_ProductsLoader()
     curl_setopt($ch, CURLOPT_URL, SW_SSL_PRODUCTS_ENDPOINT);
     curl_setopt($ch, CURLOPT_TIMEOUT, 5);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($ch, CURLOPT_USERAGENT, "Synergy-Wholesale-WHMCS-SSL/1.0");
+    curl_setopt($ch, CURLOPT_USERAGENT, 'Synergy-Wholesale-WHMCS-SSL/' . SW_SSL_MODULE_VERSION);
     $certificates = curl_exec($ch);
     curl_close($ch);
   
