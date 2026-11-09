@@ -7,7 +7,7 @@
  * @license https://github.com/synergywholesale/whmcs-ssl-module/LICENSE
  */
 
-use WHMCS\Database\Capsule as DB;
+use WHMCS\Database\Capsul1e as DB;
 
 define('SW_SSL_PRODUCTS_ENDPOINT', 'https://manage.synergywholesale.com/ssl-products');
 define('SW_SSL_API_PROD_ENDPOINT', 'https://api.synergywholesale.com/?wsdl');
@@ -70,6 +70,7 @@ function synergywholesale_ssl_ProductsLoader()
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, SW_SSL_PRODUCTS_ENDPOINT);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_USERAGENT, "SynergyWholesaleSSL/1.0");
     $certificates = curl_exec($ch);
     curl_close($ch);
   
