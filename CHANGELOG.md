@@ -2,6 +2,11 @@
 
 Synergy Wholesale WHMCS SSL Module
 
+## 3.0.7 [Updated 16/11/2026]
+
+### Fixed
+- Added default User Agent to HTTP requests
+
 ## 3.0.6 [Updated 24/11/2022]
 
 ### Fixed
